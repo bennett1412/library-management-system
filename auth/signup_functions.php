@@ -32,15 +32,15 @@ function pwdMatch($password,$password_confirmation)
     return $result;
 }
 
-function emailExists($conn){
-    $sql = "select * from users where email = ?;";
+function emailExists($conn,$email){
+    $sql = "SELECT * FROM users WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt,$sql)){
         header("location: ../signup.php?error=stmtfailed");
         exit();
     }
     
-    mysqli_stmt_bind_param($stmt, "s", $username,$email);
+    mysqli_stmt_bind_param($stmt, "s",$email);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -70,7 +70,7 @@ function createUser($conn, $name, $email, $password,$mobile)
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
    
-    header("location: ../../signup.php?error=none");
+    header("location: ../login.php?error=none");
     exit();
 }
 

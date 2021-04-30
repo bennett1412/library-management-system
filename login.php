@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
-</head>
-
-<body>
-    <?php include 'navbar.php' ?>
+<?php
+include_once 'header.php';
+?>
     <div class="grid">
         <h4 class="">User Login</h4>
         <br>
@@ -36,25 +24,21 @@
                     echo "<p> Fill in all the Fields</p>";
                 }
 
-                if ($_GET["error"] == "invalidemail") {
-                    echo "<p>Please enter a valid email</p>";
+                else if ($_GET["error"] == "invalidemail") {
+                    echo "<p>Invalid Email</p>";
                 }
 
-                if ($_GET["error"] == "passwordsdontmatch") {
-                    echo "<p> Fill in all the </p>";
-                }
-                if ($_GET["error"] == "stmtfailed") {
-                    echo "Something went wrong. Please try again!!</p>";
-                }
-                if ($_GET["error"] == "none") {
-                    echo "<p>You have signed up</p>";
+                else if ($_GET["error"] == "invalidemail") {
+                    echo "<p>Invalid Email</p>";
+                } 
+                else if ($_GET["error"] == "invalidpwd") {
+                    echo "<p>Invalid password!!</p>";
                 }
             }
             ?>
         </form>
     </div>
     </div>
-</body>
-
-
-</html>
+<?php 
+include_once 'footer.php';
+?>
