@@ -1,4 +1,6 @@
 <?php
+//signup functions
+
 
 function emptyInputSignup($name,$email,$mobile,$password,$password_confirmation){
     $result;
@@ -55,6 +57,7 @@ function emailExists($conn,$email){
     mysqli_stmt_close($stmt);
 }
 
+
 function createUser($conn, $name, $email, $password,$mobile)
 {
     $sql = "INSERT INTO users (name,email,password,mobile) VALUES (?,?,?,?);";
@@ -73,7 +76,7 @@ function createUser($conn, $name, $email, $password,$mobile)
     header("location: ../login.php?error=none");
     exit();
 }
-
+//login functions
 function emptyInputLogin($email, $password)
 {
     $result;
@@ -110,4 +113,88 @@ function loginUser($conn, $email,$password){
         exit();
         
     }
+}
+
+//update user profile functions
+function emailTaken($conn, $email) //difference between emailTaken and emailExists is that 
+                                        //emailTaken checks if the new email is not taken by another user
+{
+    session_start();
+    $sql = "SELECT * FROM users WHERE email = ? AND id != ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../update_profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $email,$_SESSION["id"]);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+function grabUser($conn){
+    session_start();
+    $sql = "SELECT * FROM users WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=somethingwentwrong");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION["id"]);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+
+function emptyInputUpdate($email, $name,$mobile)
+{
+    $result;
+    if (empty($email) || empty($name)|| empty($mobile)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function updateUser($conn, $name, $email, $mobile)
+{
+    $sql = 'UPDATE users SET name = ?, email = ?, mobile = ? WHERE id = ?;';
+    $stmt = mysqli_stmt_init($conn);
+    session_start();
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);// error from the prepared stmt
+        header("location: ../update_profile.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $mobile,$_SESSION["id"]);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    $updatedUser = grabUser($conn);
+    $_SESSION["email"] = $updatedUser["email"];
+    $_SESSION["name"] = $updatedUser["name"];
+    $_SESSION["mobile"] = $updatedUser["mobile"];
+    // echo($_SESSION["name"]);
+    // die($_SESSION["id"]);
+    header("location: ../update_profile.php?error=none");
+    exit();
 }

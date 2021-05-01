@@ -35,8 +35,8 @@ session_start();
             <?php
             if (isset($_SESSION["id"])) {
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="auth/logout.inc.php">Logout</a></li>';
-                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="#">View Profile</a></li>';
-                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="#">Change Profile</a></li>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="profile.php">View Profile</a></li>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="update_profile.php">Change Profile</a></li>';
             } else {
 
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="signup.php">Register</a>';

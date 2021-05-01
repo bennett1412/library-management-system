@@ -16,10 +16,14 @@ if(isset($_POST['submit'])){
     }
 
     if (invalidEmail($email) !== false) {
-        header("location: ../../signup.php?error=invalidemail");
+        header("location: ../signup.php?error=invalidemail");
         exit();
     }
 
+    if (emailExists($conn, $email) !== false) {
+        header("location: ../signup.php?error=emailexists");
+        exit();
+    }
 
     // TODO: add check for mobile nos 
     // if (invalidMobile($mobile) !== false) {

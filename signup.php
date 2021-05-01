@@ -47,6 +47,9 @@ include_once 'header.php';
                     if ($_GET["error"] == "stmtfailed") {
                         echo "Something went wrong. Please try again!!</p>";
                     }
+                    if ($_GET["error"] == "emailexists") {
+                        echo "This Email is already registerd!</p>";
+                    }
                     if ($_GET["error"] == "none") {
                         echo "<p>You have signed up</p>";
                     }
