@@ -10,40 +10,39 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
 
-    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">LibMe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body class="bg-gray-300">
+    <nav class="flex flex-wrap items-center justify-between p-2 bg-blue-200">
+        <div class="flex md:hidden">
+            <button id="hamburger">
+                <img class="toggle block" src="https://img.icons8.com/fluent-systems-regular/2x/menu-squared-2.png" width="40" height="40" />
+                <img class="toggle hidden" src="https://img.icons8.com/fluent-systems-regular/2x/close-window.png" width="40" height="40" />
+            </button>
+        </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Issue</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav navbar-right">
-                <?php
-                if (isset($_SESSION["id"])) {
-                    echo '<li class="nav-item"><a class="nav-link" href="auth/logout.inc.php">Logout</a></li>';
-                } else {
 
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="signup.php">Register</a></li>';
-                    echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
-                    
-                }
-                ?>
-            </ul>
+
+        <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none" id="navbarSupportedContent">
+            <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">LibMe</a>
+            <a class="block md:inline-block text-blue-900 hover:text-blue-500 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="index.php">Home </a>
+            <a class="block md:inline-block text-blue-900 hover:text-blue-500 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Issue</a>
+        </div>
+        <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none">
+            <?php
+            if (isset($_SESSION["id"])) {
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="auth/logout.inc.php">Logout</a></li>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="#">View Profile</a></li>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="#">Change Profile</a></li>';
+            } else {
+
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="signup.php">Register</a>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-900 hover:bg-blue-500 text-white md:rounded" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </nav>
     <div class="wrapper">

@@ -105,7 +105,8 @@ function loginUser($conn, $email,$password){
         $_SESSION["id"] = $emailExists["id"];
         $_SESSION["email"] = $emailExists["email"];
         $_SESSION["name"] = $emailExists["name"];
-        header("location: ../index.php");
+        $_SESSION["mobile"] = $emailExists["mobile"];
+        header("location: ../dashboard.php");
         exit();
         
     }

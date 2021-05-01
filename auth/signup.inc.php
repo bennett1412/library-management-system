@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     require_once 'signup_functions.php';
 
     if(emptyInputSignup($name,$email,$mobile,$password,$password_confirmation) !== false){
-        header("location: ../../signup.php?error=emptyinput");
+        header("location: ../signup.php?error=emptyinput");
         exit();
     }
 
