@@ -35,6 +35,14 @@ include_once 'header.php';
                 ?>
             </div>
         </form>
+        <?php
+        if(isset($_GET["newpwd"])){
+            if($_GET["newpwd"] == ["passwordupdated"]){
+                echo '<p class = "signupsuccess">Your password has been reest!</p>';
+            }
+        }
+        ?>
+        <a href="reset-password.php">Forgot your password? :(</a>
     </div>
 </div>
 <?php
