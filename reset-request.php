@@ -1,14 +1,14 @@
 <?php
-    if(isset($_POST("reset-request-submit"))){
-        $selector = bin2hex(random_bytes(8));
-        $token = random_bytes(32);
-
-        $url = "www.lms.org/create-new-pasword.php?selector = " . $selector . "&validator = " . bin2hex($token);
+    if(isset($_POST["reset-request-submit"])){
+        $selector = "fc120496849b1e5d"; //bin2hex(random_bytes(8))
+        $token = "x��8�v� Ʃ� Q}Ι�d�.��ֺ�"; //random_bytes(32)
+        //check the url afterwards
+        $url = "http://localhost/lib-man-proj/create-new-pasword.php?selector=" . $selector . "&validator=78efbfbdefbfbd38efbfbd76efbfbd200510c6a910efbfbd1820517dce991b1cefbfbd0164efbfbd2eefbfbdefbfbdd6baefbfbd";
         $expires = date("U") + 900;
-
+        //http://localhost/lib-man-proj/login.php
         require "db_connect.php";
 
-        $userEmail = $_POST("email");
+        $userEmail = $_POST["email"];
 
         $sql = "DELETE FROM pwdReset WHERE pwdResetEmail = ?;";
         $stmt = mysqli_stmt_init($conn);
@@ -51,9 +51,9 @@
         $headers .= "Reply To: jasleoyo@gmail.com\r\n";
         $headers .= "Content-type: text/html\r\n";
 
-        mail($to , $subject , $headers);
+        mail($to , $subject , $message, $headers);
 
-        header("Location: ../reset-password.php?reset = success");
+        header("Location: reset-password.php?reset=success");
     }
     else{
         header("Location: ../index.php");
