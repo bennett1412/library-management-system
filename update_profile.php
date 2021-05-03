@@ -17,7 +17,7 @@ include_once 'header.php';
             </div>
             <div class="mb-4">
                 <label class="" for="Mobile">Mobile: </label>
-                <input type="text" name="mobile" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Mobile" aria-describedby="mobile" value=' <?php echo $_SESSION["mobile"] ?>'>
+                <input type="text" name="mobile" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Mobile" aria-describedby="mobile" value='<?php echo $_SESSION["mobile"] ?>'>
             </div>
             <button type="submit" name="submit" class="bg-blue-600 hover:bg-blue-700 bg-opacity-100 text-white font-bold py-2 px-4 rounded">Submit</button>
             <br>
