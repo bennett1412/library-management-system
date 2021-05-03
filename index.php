@@ -32,18 +32,11 @@ session_start();
             <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Issue</a>
         </div>
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none">
-            <!-- <?php
-                    if (isset($_SESSION["id"])) {
-                        echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="auth/logout.inc.php">Logout</a></li>';
-                        echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="profile.php">View Profile</a></li>';
-                        echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-red-900 text-white md:rounded" href="update_profile.php">Change Profile</a></li>';
-                    } else {
-                        echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/signup.php">Register</a>';
-                        echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/login.php">Login</a>';
-                    }
-                    ?> -->
-            <a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/signup.php">Register</a>
+            <a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/admin/admin-login.php">Admin login</a>
+            <a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/login.php">User Login</a>
+
         </div>
+
     </nav>
     <div class="wrapper">
 

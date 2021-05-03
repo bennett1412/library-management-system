@@ -5,21 +5,21 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
 
-    require_once '../../server/db_connect.php';
-    require_once 'functions.php';
+    require_once "../../../server/db_connect.php";
+    require_once "functions.inc.admin.php";
 
     if (emptyInputUpdate($name, $email, $mobile) !== false) {
-        header("location: ../update_profile.php?error=emptyinput");
+        header("location: ../admin-update_profile.php?error=emptyinput");
         exit();
     }
 
     if (invalidEmail($email) !== false) {
-        header("location: ../update_profile.php?error=invalidemail");
+        header("location: ../admin-update_profile.php?error=invalidemail");
         exit();
     }
 
     if (emailTaken($conn, $email) !== false) {
-        header("location: ../update_profile.php?error=emailexists");
+        header("location: ../admin-update_profile.php?error=emailexists");
         exit();
     }
 
@@ -30,10 +30,10 @@ if (isset($_POST['submit'])) {
     //     exit();
     // }
     
-    updateUser($conn, $name, $email, $mobile);
+    updateAdmin($conn, $name, $email, $mobile);
 } 
 else {
-    header("location: ../update_profile.php");
+    header("location: ../admin-update_profile.php");
     exit();
     // echo 'something fishy';
 }

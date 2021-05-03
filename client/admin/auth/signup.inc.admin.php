@@ -7,21 +7,21 @@ if(isset($_POST['submit'])){
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
 
-    require_once '../../server/db_connect.php';
-    require_once 'functions.php';
+    require_once "../../../server/db_connect.php";
+    require_once "functions.inc.admin.php";
 
     if(emptyInputSignup($name,$email,$mobile,$password,$password_confirmation) !== false){
-        header("location: ../signup.php?error=emptyinput");
+        header("location: ../admin-signup.php?error=emptyinput");
         exit();
     }
 
     if (invalidEmail($email) !== false) {
-        header("location: ../signup.php?error=invalidemail");
+        header("location: ../admin-signup.php?error=invalidemail");
         exit();
     }
 
     if (emailExists($conn, $email) !== false) {
-        header("location: ../signup.php?error=emailexists");
+        header("location: ../admin-signup.php?error=emailexists");
         exit();
     }
 
@@ -32,15 +32,15 @@ if(isset($_POST['submit'])){
     // }
 
     if (pwdMatch($password,$password_confirmation) !== false) {
-        header("location: ../../signup.php?error=passwordsdontmatch");
+        header("location: ../admin-signup.php?error=passwordsdontmatch");
         exit();
     }
 
-    createUser($conn, $name, $email,$password, $mobile);
+    createAdmin($conn, $name, $email,$password, $mobile);
 }
 
 else{
-    header("location: ../signup.php");
+    header("location: ../admin-signup.php");
     exit();
     // echo 'something fishy';
 }
