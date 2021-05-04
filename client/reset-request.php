@@ -10,10 +10,10 @@ if (isset($_POST["reset-request-submit"])) {
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
     //check the url afterwards
-    $url = "http://localhost/lib-man-proj/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+    $url = "http://localhost/lib-man-proj/client/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
     $expires = date("U") + 900;
     //http://localhost/lib-man-proj/login.php
-    require "db_connect.php";
+    require "../server/db_connect.php";
 
     $userEmail = $_POST["email"];
     //VD?3gBTf%5n3xMw(

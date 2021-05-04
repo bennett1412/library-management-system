@@ -18,7 +18,7 @@
 
         $currentDate = date("U");
 
-        require "db_connect.php";
+        require "../server/db_connect.php";
 
         $sql = "SELECT * FROM pwdreset WHERE pwdResetSelector = ? AND pwdResetExpires >= ?;";
         
