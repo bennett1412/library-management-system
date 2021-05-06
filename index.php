@@ -15,7 +15,7 @@ session_start();
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-300">
+<body style="background-image: url('client/imgs/lib.jpg');background-repeat: no-repeat; background-size: cover;" class="bg-gray-300">
     <nav class="flex flex-wrap items-center justify-between p-2 bg-blue-200">
         <div class="flex md:hidden">
             <button id="hamburger">
@@ -29,7 +29,6 @@ session_start();
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none" id="navbarSupportedContent">
             <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">LibMe</a>
             <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Home </a>
-            <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Issue</a>
         </div>
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none">
             <a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="client/admin/admin-login.php">Admin login</a>
@@ -39,7 +38,11 @@ session_start();
 
     </nav>
     <div class="wrapper">
-
+        <div class="flex justify-center">
+            <div class="w-8/12 bg-white p-6 rounded-lg mt-5 shadow-xl">
+                <h1 class="text-blue-800 text-bold text-4xl">Welcome to LibMe library management portal!!</h1>
+            </div>
+        </div>
     </div>
     <script src="scripts/toggle.js"></script>
 </body>

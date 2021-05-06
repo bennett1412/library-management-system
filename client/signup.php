@@ -4,7 +4,7 @@ include_once 'header.php';
 
 <div class="flex justify-center">
     <div class="w-4/12 bg-white p-6 rounded-lg mt-5">
-        <h4 class="">User Registeration Form</h4>
+        <h4 class="">User Registration Form</h4>
         <br>
         <form action="auth/signup.inc.php" method="POST" class="">
             <div class="mb-4">
