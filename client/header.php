@@ -37,6 +37,7 @@ session_start();
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="auth/logout.inc.php">Logout</a></li>';
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="profile.php">View Profile</a></li>';
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-red-900 text-white md:rounded" href="update_profile.php">Change Profile</a></li>';
+                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-red-900 text-white md:rounded" href="user-request.php">Make A Request!</a></li>';
             } else {
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="signup.php">Register</a>';
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="login.php">Login</a>';

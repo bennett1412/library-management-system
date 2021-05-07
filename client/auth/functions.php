@@ -198,3 +198,34 @@ function updateUser($conn, $name, $email, $mobile)
     header("location: ../update_profile.php?error=none");
     exit();
 }
+
+//user book request functions
+function emptyInputRequest($name,$book,$author)
+{
+    $result;
+    if (empty($name) || empty($book) || empty($author)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function createBookRequest($conn, $name, $book, $author)
+{
+    $sql = "INSERT INTO requests (name,book,author) VALUES (?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../../user-request.php?error=stmtfailed");
+        exit();
+     }
+    mysqli_stmt_bind_param($stmt, "sss", $name, $book, $author);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+   
+    header("location: ../user-request.php?error=none");
+    exit();
+}
+?>
