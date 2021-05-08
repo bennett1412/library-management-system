@@ -15,7 +15,8 @@ session_start();
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body style="background-image: url('client/imgs/lib.jpg');background-repeat: no-repeat; background-size: cover;" class="bg-gray-300">
+<body style="background-image: url('client/imgs/lib.jpg');background-repeat: no-repeat; background-size: cover;background-color: rgba(0, 0, 0, 0.5);" class="">
+
     <nav class="flex flex-wrap items-center justify-between p-2 bg-blue-200">
         <div class="flex md:hidden">
             <button id="hamburger">
@@ -40,7 +41,7 @@ session_start();
     <div class="wrapper">
         <div class="flex justify-center">
             <div class="w-8/12 bg-white p-6 rounded-lg mt-5 shadow-xl">
-                <h1 class="text-blue-800 text-bold text-4xl">Welcome to LibMe library management portal!!</h1>
+                <h1 class="text-blue-800 text-bold md:text-4xl  text-lg">Welcome to LibMe library management portal!!</h1>
             </div>
         </div>
     </div>

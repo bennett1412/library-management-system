@@ -25,6 +25,7 @@ require_once('../../server/db_connect.php');
     </div>
 </div>
 <div class="grid grid-cols-3">
+
     <div class=" bg-white p-6 rounded-lg mt-5 mx-5">
         <div class="bg-blue-500 border rounded w-full py-2 px-3 text-white bold">
             Number of books
@@ -33,6 +34,7 @@ require_once('../../server/db_connect.php');
             <?php echo getBookCount($conn)["count(B_NO)"] ?>
         </div>
     </div>
+
 
     <div class="bg-white p-6 rounded-lg mt-5 mx-5">
         <div class="bg-green-500 border rounded w-full py-2 px-3 text-white bold">
@@ -45,11 +47,14 @@ require_once('../../server/db_connect.php');
 
     <div class="bg-white p-6 rounded-lg mt-5 mx-5">
         <div class="bg-purple-500 border rounded w-full py-2 px-3 text-white bold">
-            Quick Summary
+            Quick Actions
         </div>
-        <div class="px-2" style="width: 300px">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sunt excepturi, nisi provident qui dolorem sit velit commodi eum ex aut, nostrum ullam labore eius officiis nam eos quos officia.
-        </div>
+
+        <a class="flex justify-center text-center" href="listbooks.php" style="">
+            <div class="hover:bg-blue-600 px-2 w-1/2 mt-2 bg-blue-400 rounded p-1 text-white bold">
+                List Books
+            </div>
+        </a>
     </div>
 </div>
 <div class="bg-white p-6 rounded-lg mt-5 mx-5 justify-center">
