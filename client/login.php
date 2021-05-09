@@ -42,7 +42,7 @@ include_once 'header.php';
             }
         }
         ?>
-        <a href="reset-password.php">Forgot your password? :(</a>
+        <a class="text-gray-600 hover:text-blue-600"href="reset-password.php">Forgot your password? :(</a>
     </div>
 </div>
 <?php

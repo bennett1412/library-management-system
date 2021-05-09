@@ -33,7 +33,7 @@
 
             $result = mysqli_stmt_get_result($stmt);
             if(!$row = mysqli_fetch_assoc($result)){
-                echo "You need to re-submit your reset request.";
+                echo "You need to re-submit your reset request. statement err";
                 exit();
             }
             else{
@@ -41,7 +41,7 @@
                 $tokenCheck = password_verify($tokenBin , $row["pwdResetToken"]);
 
                 if($tokenCheck === false){
-                    echo "You need to re-submit your reset request.";
+                    echo "You need to re-submit your reset request. wrong token";
                     exit();
                 }
                 elseif($tokenCheck === true){
@@ -81,7 +81,7 @@
                                 else{
                                     mysqli_stmt_bind_param($stmt , "s" , $tokenEmail);
                                     mysqli_stmt_execute($stmt);
-                                    header("Location: signup.php?newpwd=passwordupdated");
+                                    header("Location: login.php?newpwd=passwordupdated");
                                 
                             }
                             
