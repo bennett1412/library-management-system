@@ -93,7 +93,7 @@ function searchBooks($conn,$name){
     mysqli_stmt_close($stmt);
 }
 
-//admin book adding functions
+//admin book adding, removing and editing functions
 
 function emptyInputAdd($ISBN,$book,$author,$Publisher,$Category,$Copies)
 {
@@ -123,4 +123,89 @@ function addBook($conn,$ISBN,$book,$author,$Publisher,$Category,$Copies)
     header("location: ../../admin/add-books.php?error=none");
     exit();
 
+}
+
+function emptyInputEdit($book_name,$author_name,$publisher_name,$category_name,$copies){
+    $result;
+    if (empty($book_name) || empty($author_name) || empty($publisher_name) || empty($category_name) || empty($copies)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function grabBook($conn){
+    session_start();
+    $sql = "SELECT * FROM books WHERE B_NO = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../edit-booklist.php?error=somethingwentwrong");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION["B_NO"]);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+function updateBook($conn,$book_name,$author_name,$publisher_name,$category_name,$copies){
+    $sql = 'UPDATE books SET BOOK_NAME = ?, AUTHOR = ?, PUBLISHER_NAME = ?, CATEGORY_NAME= ?, COPIES = ? WHERE B_NO = ?;';
+    $stmt = mysqli_stmt_init($conn);
+    session_start();
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);// error from the prepared stmt
+        header("location: ../edit-booklist.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "sssssi", $book_name,$author_name,$publisher_name,$category_name,$copies,$_SESSION["B_NO"]);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    $updatedAdmin = grabBook($conn);
+    $_SESSION["book_name"] = $updatedAdmin["book_name"];
+    $_SESSION["author_name"] = $updatedAdmin["author_name"];
+    $_SESSION["publisher_name"] = $updatedAdmin["publisher_name"];
+    $_SESSION["category_name"] = $updatedAdmin["category_name"];
+    $_SESSION["copies"] = $updatedAdmin["copies"];
+    // echo($_SESSION["name"]);
+    // die($_SESSION["id"]);
+    header("location: ../edit-booklist.php?error=none");
+    exit();
+}
+
+function emptyInputDelete($bno){
+    $result;
+    if (empty($bno)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+
+}
+
+function deleteBook($conn,$bno){
+    $sql = "DELETE FROM books WHERE books.B_NO = ?;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../../admin/listbooks.php?error=$er_msg");
+        exit();
+     }
+    mysqli_stmt_bind_param($stmt, "s",$bno);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+   
+   //header("location: ../listbooks.php");
+    exit();
 }

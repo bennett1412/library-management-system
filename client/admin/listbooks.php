@@ -6,7 +6,7 @@ include_once '../../server/db_connect.php';
 <div class="flex justify-between bg-indigo-900 py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">LibMe:</span>
-        <span class="font-semibold mr-2 text-left flex-auto">Hey there,<?php echo $_SESSION["name"] ?></span>
+        <span class="font-semibold mr-2 text-left flex-auto">Hey there, <?php echo $_SESSION["name"] ?></span>
     </div>
 </div>
 
@@ -61,8 +61,18 @@ if ($books =listBooks($conn)) {
                         <td class="p-2 border-r"><?php echo $book['COPIES']; ?></td>
 
                         <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                            <!-- <a href="./edit-booklist.php" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a> -->
+                            <!-- <a href="./delete-book.php" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" onclick= delete>Remove</a> -->
+                            <form method="POST">
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name = "edit" value = "Edit"/>
+                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name = "delete" value = "Delete"/>
+                            </form>
+                        <?php
+                            if(array_key_exists("delete", $_POST)){
+                                $bno = $book['B_NO'];
+                                deleteBook($conn,$bno);
+                            }
+                        ?>
                         </td>
                     </tr>
                 <?php } ?>
