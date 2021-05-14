@@ -16,7 +16,7 @@ include_once 'header.php';
             if (ctype_xdigit($_GET["selector"]) !== false && ctype_xdigit($_GET["validator"]) !== false) {
         ?>
 
-                <form action="auth/reset-password.inc.php" method="post">
+                <form action="auth/admin-reset-password.inc.php" method="post">
                     <input type="hidden" name="selector" value="<?php echo $selector ?>">
                     <input type="hidden" name="validator" value="<?php echo $validator ?>">
                     <input class="focus:outline-none focus:border-blue-500 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="password" name="pwd" , placeholder="Enter a new password!">

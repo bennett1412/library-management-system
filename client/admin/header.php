@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'admin-config.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,9 +11,11 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMS</title>
+    <base href="http://localhost/lib-man-proj/client/admin/"> <!-- solved the path issue -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="bg-gray-300">
@@ -28,7 +31,7 @@ session_start();
 
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none" id="navbarSupportedContent">
             <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">LibMe</a>
-            <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Home </a>
+            <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="admin-dashboard.php">Dashboard</a>
             <?php if (isset($_SESSION["id"])) {
                 echo '<a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">Issue</a>';
             } ?>
@@ -41,7 +44,6 @@ session_start();
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="admin-profile.php">View Profile</a></li>';
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="admin-update_profile.php">Change Profile</a></li>';
             } else {
-                echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto  px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="admin-signup.php">Register</a>';
                 echo '<a class="mx-3 toggle hidden md:flex w-full md:w-auto px-4 py-2 text-right bg-blue-700 hover:bg-blue-900 text-white md:rounded" href="admin-login.php">Login</a>';
             }
             ?>
