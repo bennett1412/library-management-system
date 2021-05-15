@@ -194,7 +194,7 @@ function emptyInputDelete($bno){
 }
 
 function deleteBook($conn,$bno){
-    $sql = "DELETE FROM books WHERE books.B_NO = ?;";
+    $sql = "DELETE FROM books WHERE B_NO = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -202,10 +202,7 @@ function deleteBook($conn,$bno){
         header("location: ../../admin/listbooks.php?error=$er_msg");
         exit();
      }
-    mysqli_stmt_bind_param($stmt, "s",$bno);
+    mysqli_stmt_bind_param($stmt, "i",$bno);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-   
-   //header("location: ../listbooks.php");
-    exit();
 }

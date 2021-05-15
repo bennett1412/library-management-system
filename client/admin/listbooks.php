@@ -1,7 +1,8 @@
 <?php
 include_once 'header.php';
-include_once 'auth/admin-features.php';
 include_once '../../server/db_connect.php';
+include_once 'auth/admin-features.php';
+
 ?>
 <div class="flex justify-between bg-indigo-900 py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
@@ -11,9 +12,8 @@ include_once '../../server/db_connect.php';
 </div>
 
 <?php
-if ($books =listBooks($conn)) {
+if ($books = listBooks($conn)) {
 ?>
-
     <div class="table w-full p-2">
         <table class="w-full border">
             <thead>
@@ -63,16 +63,11 @@ if ($books =listBooks($conn)) {
                         <td>
                             <!-- <a href="./edit-booklist.php" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a> -->
                             <!-- <a href="./delete-book.php" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" onclick= delete>Remove</a> -->
-                            <form method="POST">
-                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name = "edit" value = "Edit"/>
-                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name = "delete" value = "Delete"/>
+                            <form action="auth/delete-book.inc.php" method="POST">
+                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>"> 
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit" value="Edit" />
+                                <input  type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
                             </form>
-                        <?php
-                            if(array_key_exists("delete", $_POST)){
-                                $bno = $book['B_NO'];
-                                deleteBook($conn,$bno);
-                            }
-                        ?>
                         </td>
                     </tr>
                 <?php } ?>
@@ -89,6 +84,13 @@ if ($books =listBooks($conn)) {
     ";
 }
 ?>
+<script>
+    function reloadPage() {
+        location.reload();
+        console.log("page reloaded");
+        return false;
+    }
+</script>
 <?php
 include_once 'footer.php';
 ?>
