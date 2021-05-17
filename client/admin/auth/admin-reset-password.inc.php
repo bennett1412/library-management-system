@@ -8,17 +8,17 @@
 
 
         if(empty($password) || empty($passwordrepeat)){
-            header("Location: create-new-password.php?newpwd-empty");
+            header("Location: ../admin-create-new-password.php?newpwd-empty");
             exit();
         }
         else if ($password != $passwordrepeat){
-            header("Location: create-new-password.php?newpwd=pwdnotsame");
+            header("Location: ../admin-create-new-password.php?newpwd=pwdnotsame");
             exit();
         }
 
         $currentDate = date("U");
 
-        require "../server/db_connect.php";
+        require "../../../server/db_connect.php";
 
         $sql = "SELECT * FROM pwdreset WHERE pwdResetSelector = ? AND pwdResetExpires >= ?;";
         
@@ -46,7 +46,7 @@
                 }
                 elseif($tokenCheck === true){
                     $tokenEmail = $row['pwdResetEmail'];
-                    $sql = "SELECT * FROM users WHERE email=?;";
+                    $sql = "SELECT * FROM admins WHERE email=?;";
                     $stmt = mysqli_stmt_init($conn);
                     if(!mysqli_stmt_prepare($stmt , $sql)){
                     echo mysqli_stmt_error($stmt);
@@ -61,7 +61,7 @@
                             exit();
                         }
                         else{
-                            $sql = "UPDATE users SET password=? WHERE email=?";
+                            $sql = "UPDATE admins SET password=? WHERE email=?";
                             $stmt = mysqli_stmt_init($conn);
                             if(!mysqli_stmt_prepare($stmt , $sql)){
                             echo mysqli_stmt_error($stmt);
@@ -81,7 +81,7 @@
                                 else{
                                     mysqli_stmt_bind_param($stmt , "s" , $tokenEmail);
                                     mysqli_stmt_execute($stmt);
-                                    header("Location: login.php?newpwd=passwordupdated");
+                                    header("Location: ../admin-login.php?newpwd=passwordupdated");
                                 
                             }
                             
@@ -94,8 +94,5 @@
     }
 }
     else{
-        header("Location: ../index.php");
+        header("Location: ../admin-login.php");
     }
-
-
-?>

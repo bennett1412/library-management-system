@@ -26,7 +26,7 @@ CREATE TABLE ISSUE (
 
 -- to create table admins
 CREATE TABLE `admins` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,

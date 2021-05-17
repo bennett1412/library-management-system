@@ -1,7 +1,6 @@
 <?php
 
 
-
 function getUserCount($conn){
     $sql = "SELECT count(id) FROM users;";
     $stmt = mysqli_stmt_init($conn);
@@ -92,6 +91,39 @@ function searchBooks($conn,$name){
     }
     mysqli_stmt_close($stmt);
 }
+
+//list users
+function listUsers($conn)
+{
+
+    $sql = "SELECT id,name,email,mobile,staff FROM users;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../listusers.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    return $resultData;
+    mysqli_stmt_close($stmt);
+}
+//search for users
+
+function searchUsers($conn, $id)
+{
+
+    $sql = "SELECT id,name,email,mobile,staff FROM users WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../search-users.php?error=$er_msg");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
 
 //admin book adding, removing and editing functions
 
@@ -204,5 +236,4 @@ function deleteBook($conn,$bno){
      }
     mysqli_stmt_bind_param($stmt, "i",$bno);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-}
+    mysqli_stmt_close($stmt);}
