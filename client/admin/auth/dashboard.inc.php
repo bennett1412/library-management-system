@@ -4,7 +4,7 @@ require_once('../../server/db_connect.php');
 <div class="flex justify-between bg-indigo-900 py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">LibMe:</span>
-        <span class="font-semibold mr-2 text-left flex-auto">Hey there,<?php echo $_SESSION["name"] ?></span>
+        <span class="font-semibold mr-2 text-left flex-auto">Hey there, <?php echo $_SESSION["name"] ?></span>
     </div>
     <div>
         <a href="#">
@@ -12,7 +12,7 @@ require_once('../../server/db_connect.php');
                 <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Search</span>
             </div>
         </a>
-        <a href="#">
+        <a href="../admin/add-books.php">
             <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
                 <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Add</span>
             </div>

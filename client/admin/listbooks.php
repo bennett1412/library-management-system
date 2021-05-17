@@ -1,19 +1,19 @@
 <?php
 include_once 'header.php';
-include_once 'auth/admin-features.php';
 include_once '../../server/db_connect.php';
+include_once 'auth/admin-features.php';
+
 ?>
 <div class="flex justify-between bg-indigo-900 py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
         <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">LibMe:</span>
-        <span class="font-semibold mr-2 text-left flex-auto">Hey there,<?php echo $_SESSION["name"] ?></span>
+        <span class="font-semibold mr-2 text-left flex-auto">Hey there, <?php echo $_SESSION["name"] ?></span>
     </div>
 </div>
 
 <?php
-if ($books =listBooks($conn)) {
+if ($books = listBooks($conn)) {
 ?>
-
     <div class="table w-full p-2">
         <table class="w-full border">
             <thead>
@@ -61,8 +61,13 @@ if ($books =listBooks($conn)) {
                         <td class="p-2 border-r"><?php echo $book['COPIES']; ?></td>
 
                         <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                            <!-- <a href="./edit-booklist.php" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a> -->
+                            <!-- <a href="./delete-book.php" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" onclick= delete>Remove</a> -->
+                            <form action="auth/delete-book.inc.php" method="POST">
+                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>"> 
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit" value="Edit" />
+                                <input  type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
@@ -79,6 +84,13 @@ if ($books =listBooks($conn)) {
     ";
 }
 ?>
+<script>
+    function reloadPage() {
+        location.reload();
+        console.log("page reloaded");
+        return false;
+    }
+</script>
 <?php
 include_once 'footer.php';
 ?>
