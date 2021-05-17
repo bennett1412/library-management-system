@@ -12,7 +12,8 @@ session_start();
     <title>LMS</title>
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> -->
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="client/css/tailwind.css">
 </head>
 
 <body style="background-image: url('client/imgs/lib.jpg');background-repeat: no-repeat; background-size: cover;background-color: rgba(0, 0, 0, 0.5);" class="">
