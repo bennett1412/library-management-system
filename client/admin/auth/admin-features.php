@@ -124,7 +124,7 @@ function searchUsers($conn, $id)
     }
 
     mysqli_stmt_bind_param($stmt, "i", $id);
-
+}
 //admin book adding, removing and editing functions
 
 function emptyInputAdd($ISBN,$book,$author,$Publisher,$Category,$Copies)
