@@ -61,8 +61,11 @@ if ($users = listUsers($conn)) {
                         <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
                         <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
                         <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                            <form action="auth/delete-user.inc.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit" value="Edit" />
+                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $user['id'] ?>" value="Delete" />
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
