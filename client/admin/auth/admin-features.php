@@ -215,6 +215,30 @@ function deleteBook($conn, $bno)
     mysqli_stmt_close($stmt);
 }
 
+//to select a user from db
+function grabUser($conn,$id)
+{
+    
+    $sql = "SELECT * FROM users WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=somethingwentwrong");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
 
 //list users
 function listUsers($conn)
@@ -277,3 +301,50 @@ function emptyInputUserDelete($id)
     return $result;
 }
 
+//to check if the user-email is taken or not
+function userEmailTaken($conn, $email,$id) //to omit the current email from the check
+                                      
+{
+    session_start();
+    $sql = "SELECT * FROM users WHERE email = ? AND id != ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../update_profile.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $email,$id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+//update-user 
+
+function updateUser($conn, $name, $email, $mobile,$id)
+{
+    $sql = 'UPDATE users SET name = ?, email = ?, mobile = ? WHERE id = ?;';
+    $stmt = mysqli_stmt_init($conn);
+    
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt); // error from the prepared stmt
+        header("location: ../update_profile.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $mobile, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    unset($_SESSION['user-name']);
+    unset($_SESSION['user-email']);
+    unset($_SESSION['user-mobile']);
+    header("location: ../listusers.php?error=none");
+    exit();
+}
