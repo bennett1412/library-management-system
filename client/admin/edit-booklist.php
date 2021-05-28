@@ -16,23 +16,23 @@ include_once 'header.php';
         <form action="auth/edit-booklist.inc.php" method="POST" class="">
             <div class="mb-4">
                 <label class="" for="book_name"> </label>
-                <input type="book_name" name="book_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="book_name" aria-describedby="book_name">
+                <input type="book_name" name="book_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="book_name" aria-describedby="book_name" placeholder="Edit Name Of The Book">
             </div>
             <div class="mb-4">
                 <label class="" for="author_name"></label>
-                <input type="author_name" name="author_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="author_name" aria-describedby="author_name" >
+                <input type="author_name" name="author_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="author_name" aria-describedby="author_name" placeholder="Edit Name Of The Author">
             </div>
             <div class="mb-4">
                 <label class="" for="publisher_name"> </label>
-                <input type="publisher_name" name="publisher_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="publisher_name" aria-describedby="publisher_name" >
+                <input type="publisher_name" name="publisher_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="publisher_name" aria-describedby="publisher_name" placeholder="Edit Name Of The Publisher">
             </div>
             <div class="mb-4">
                 <label class="" for="category_name"></label>
-                <input type="category_name" name="category_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="category_name" aria-describedby="category_name" >
+                <input type="category_name" name="category_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="category_name" aria-describedby="category_name" placeholder="Edit Category">
             </div>
             <div class="mb-4">
                 <label class="" for="copies"></label>
-                <input type="copies" name="copies" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="copies" aria-describedby="copies">
+                <input type="copies" name="copies" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="copies" aria-describedby="copies" placeholder="Edit Number of Copies">
             </div>
 
             <button type="submit" name="submit" class="bg-blue-600 hover:bg-blue-700 bg-opacity-100 text-white font-bold py-2 px-4 rounded">Submit</button>

@@ -141,7 +141,8 @@ function emailTaken($conn, $email) //difference between emailTaken and emailExis
     mysqli_stmt_close($stmt);
 }
 
-function grabAdmin($conn){
+function grabAdmin($conn)
+{
     session_start();
     $sql = "SELECT * FROM admins WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);

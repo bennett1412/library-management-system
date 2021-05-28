@@ -14,7 +14,7 @@ require_once('../../server/db_connect.php');
         </a>
 
         <div class="dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
-            <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out focus:outline-nonet">
+            <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out hover:outline-nonet">
                     <span class="">Add</span>
                     <svg class="w-3 h-3 ml-1 -mr-1 align-center" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -24,39 +24,14 @@ require_once('../../server/db_connect.php');
             <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                 <div class="absolute right-0 w-56 mt-8 origin-top-right bg-indigo-500 divide-y divide-gray-100 rounded-md shadow-lg outline-none border border-indigo-800" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                     <div class="py-1 divide-y divide-indigo-800">
-                        <a href="#" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Students</a>
-                        <a href="#" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
+                        <a href="../../" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Students</a>
+                        <a href="../admin/add-books.php" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
 
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- <div class=" relative inline-block text-left dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full hover:bg-indigo-500">
-            <span class="rounded-md shadow-sm"><button class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5  transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
-                    <span>Options</span>
-                    <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button></span>
-            <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-                <div class="absolute right-0 w-56 mt-2 origin-top-right bg-indigo-800 divide-y divide-gray-100 rounded-md shadow-lg outline-none">
-                    <div class="px-4 py-3">
-                        <p class="text-sm leading-5">Signed in as</p>
-                        <p class="text-sm font-medium leading-5 text-gray-900 truncate">tom@example.com</p>
-                    </div>
-                    <div class="py-1">
-                        <a href="javascript:void(0)" tabindex="0" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">Account settings</a>
-                        <a href="javascript:void(0)" tabindex="1" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">Support</a>
-                        <span role="menuitem" tabindex="-1" class="flex justify-between w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">New feature (soon)</span>
-                        <a href="javascript:void(0)" tabindex="2" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">License</a>
-                    </div>
-                    <div class="py-1">
-                        <a href="javascript:void(0)" tabindex="3" class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left" role="menuitem">Sign out</a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <a href="#">
             <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
                 <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Remove</span>
@@ -106,13 +81,72 @@ require_once('../../server/db_connect.php');
     <div class="text-center bg-indigo-500 border rounded w-full py-2 px-3 text-white bold">
         Requests
     </div>
+    <!-- TODO addd a table here -->
     <div class="w-full px-2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sunt excepturi, nisi provident qui dolorem sit velit commodi eum ex aut, nostrum ullam labore eius officiis nam eos quos officia.
+        <?php
+if ($users = listUsers($conn)) {
+?>
+
+    <div class="table w-full p-2">
+        <table class="w-full border">
+            <thead>
+                <tr class="bg-gray-50 border-b">
+                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                        <div class="flex items-center justify-center">
+                            ID
+                        </div>
+                    </th>
+
+                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                        <div class="flex items-center justify-center">
+                            NAME
+                        </div>
+                    </th>
+
+                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                        <div class="flex items-center justify-center">
+                            EMAIL
+                        </div>
+                    </th>
+                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                        <div class="flex items-center justify-center">
+                            MOBILE
+                        </div>
+                    </th>
+
+                    <th class="p-2 border-r cursor-pointer text-sm  text-blue-800">
+                        <div class="flex items-center justify-center">
+                            STAFF
+                        </div>
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($user = mysqli_fetch_assoc($users)) { ?>
+                    <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
+
+
+                        <td class="p-2 border-r"><?php echo $user['id']; ?></td>
+                        <td class="p-2 border-r"><?php echo $user['name']; ?></td>
+                        <td class="p-2 border-r"><?php echo $user['email']; ?></td>
+                        <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
+                        <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
+                        <td>
+                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
+                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                        </td>
+                    </tr>
+                <?php }} ?>
+            </tbody>
+        </table>
+    </div>
     </div>
 
 </div>
 <style>
-    .dropdown:focus-within .dropdown-menu {
+    .dropdown:hover .dropdown-menu {
         opacity: 1;
         transform: translate(0) scale(1);
         visibility: visible;

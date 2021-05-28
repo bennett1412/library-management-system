@@ -116,8 +116,8 @@ function loginUser($conn, $email,$password){
 }
 
 //update user profile functions
-function emailTaken($conn, $email) //difference between emailTaken and emailExists is that 
-                                        //emailTaken checks if the new email is not taken by another user
+function emailTaken($conn, $email) //to omit the current email from the check
+                                      
 {
     session_start();
     $sql = "SELECT * FROM users WHERE email = ? AND id != ?;";
