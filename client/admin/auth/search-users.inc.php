@@ -1,10 +1,11 @@
 <?php
-include_once 'admin-features.php';
+
 
 if (isset($_POST['search'])) {
     $id = $_POST['search'];
+    include_once 'admin-features.php';
+    require_once '../../server/db_connect.php';
     if ($user = searchUsers($conn, $id)) {
-
 
 ?>
 
@@ -55,8 +56,11 @@ if (isset($_POST['search'])) {
                         <td class="p-2 border-r"><?php echo  ($user['staff'] == 1)?'Yes':'No'; ?></td>
 
                         <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                            <form action="auth/modify-user.inc.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit<?php echo $user['id']?>" value="Edit" />
+                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $user['id'] ?>" value="Delete" />
+                            </form>
                         </td>
                     </tr>
 

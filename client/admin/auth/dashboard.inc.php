@@ -7,14 +7,27 @@ require_once('../../server/db_connect.php');
         <span class="font-semibold mr-2 text-left flex-auto">Hey there, <?php echo $_SESSION["name"] ?></span>
     </div>
     <div>
-        <a href="#">
-            <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
-                <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Search</span>
+         <div class="dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
+            <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out hover:outline-nonet">
+                    <span class="">Search</span>
+                    <svg class="w-3 h-3 ml-1 -mr-1 align-center" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button></span>
+
+            <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                <div class="absolute right-0 w-56 mt-8 origin-top-right bg-indigo-500 divide-y divide-gray-100 rounded-md shadow-lg outline-none border border-indigo-800" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                    <div class="py-1 divide-y divide-indigo-800">
+                        <a href="search-users.php" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Users</a>
+                        <a href="search-books.php" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
+
+                    </div>
+                </div>
             </div>
-        </a>
+        </div>
 
         <div class="dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
-            <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out focus:outline-nonet">
+            <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out hover:outline-nonet">
                     <span class="">Add</span>
                     <svg class="w-3 h-3 ml-1 -mr-1 align-center" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -146,7 +159,7 @@ if ($users = listUsers($conn)) {
 
 </div>
 <style>
-    .dropdown:focus-within .dropdown-menu {
+    .dropdown:hover .dropdown-menu {
         opacity: 1;
         transform: translate(0) scale(1);
         visibility: visible;

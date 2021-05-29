@@ -106,9 +106,9 @@ function emptyInputAdd($ISBN, $book, $author, $Publisher, $Category, $Copies)
 }
 
 // add a book to the db
-function addBook($conn, $ISBN, $book, $author, $Publisher, $Category, $Copies)
+function addBook($conn, $ISBN, $book, $author, $Publisher, $Category, $Copies,$Available_copies)
 {
-    $sql = "INSERT INTO books (ISBN,BOOK_NAME,AUTHOR,PUBLISHER_NAME,CATEGORY_NAME,COPIES) VALUES (?,?,?,?,?,?);";
+    $sql = "INSERT INTO books (ISBN,BOOK_NAME,AUTHOR,PUBLISHER_NAME,CATEGORY_NAME,COPIES,AVAILABLE_COPIES) VALUES (?,?,?,?,?,?,?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -116,7 +116,7 @@ function addBook($conn, $ISBN, $book, $author, $Publisher, $Category, $Copies)
         header("location: ../../admin/add-books.php?error=$er_msg");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ssssss", $ISBN, $book, $author, $Publisher, $Category, $Copies);
+    mysqli_stmt_bind_param($stmt, "sssssss", $ISBN, $book, $author, $Publisher, $Category, $Copies,$Available_copies);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -175,7 +175,7 @@ function updateBook($conn, $book_name, $author_name, $publisher_name, $category_
     mysqli_stmt_bind_param($stmt, "sssssi", $book_name, $author_name, $publisher_name, $category_name, $copies, $_SESSION["B_NO"]);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    $updatedAdmin = grabBook($conn);
+    $updatedbook = grabBook($conn);
     $_SESSION["book_name"] = $updatedAdmin["book_name"];
     $_SESSION["author_name"] = $updatedAdmin["author_name"];
     $_SESSION["publisher_name"] = $updatedAdmin["publisher_name"];
@@ -272,6 +272,17 @@ function searchUsers($conn, $id)
     }
 
     mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+    
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
 }
 
 //function to delete the book
@@ -347,4 +358,72 @@ function updateUser($conn, $name, $email, $mobile,$id)
     unset($_SESSION['user-mobile']);
     header("location: ../listusers.php?error=none");
     exit();
+}
+
+//issue book
+
+// empty issue form 
+function emptyIssueForm($book_id,$user_id)
+{
+    $result;
+    if (empty($book_id) || empty($user_id)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+//bookexists
+
+function bookExists($conn,$book_id){
+
+    $sql = "SELECT * FROM books WHERE B_NO = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../issue-book.php?error=somethingwentwrong");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $book_id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+// issue book function
+
+function issueBook($conn,$u_id,$b_id,$a_id){
+    $sql = "INSERT INTO issues (b_no,borrower,issuer,date_of_issue,date_of_return) VALUES (?,?,?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../../admin/issue-book.php?error=$er_msg");
+        exit();
+    }
+
+    $i_date = date('Y-m-d');
+    $r_date = date('Y-m-d',strtotime($i_date . '+2 weeks' ));
+    echo $u_id;
+    echo $b_id;
+    echo $a_id;
+    echo $i_date; 
+    echo $r_date;
+
+    mysqli_stmt_bind_param($stmt, "iiiss", $b_id,$u_id,$a_id,$i_date,$r_date);
+    mysqli_stmt_execute($stmt);
+    echo mysqli_stmt_error($stmt);
+    mysqli_stmt_close($stmt);
+
+    // header("location: ../../admin/issue-book.php?error=none");
+    exit();   
 }

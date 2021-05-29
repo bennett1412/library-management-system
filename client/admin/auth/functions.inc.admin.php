@@ -198,3 +198,4 @@ function updateAdmin($conn, $name, $email, $mobile)
     header("location: ../admin-update_profile.php?error=none");
     exit();
 }
+

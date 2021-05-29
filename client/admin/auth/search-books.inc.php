@@ -1,8 +1,9 @@
 <?php
-include_once 'admin-features.php';
 
 if (isset($_POST['search'])) {
     $name = $_POST['search'];
+    include_once 'auth/admin-features.php';
+    require_once '../../server/db_connect.php';
     if ($book = searchBooks($conn, $name)) {
 
 
@@ -55,8 +56,11 @@ if (isset($_POST['search'])) {
                         <td class="p-2 border-r"><?php echo $book['COPIES']; ?></td>
 
                         <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                            <form action="edit-booklist.php" method="POST">
+                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>"> 
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit" value="Edit" />
+                                <input  type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
+                            </form>
                         </td>
                     </tr>
 

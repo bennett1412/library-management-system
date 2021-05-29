@@ -1,6 +1,5 @@
 <?php
 include_once 'header.php';
-include_once 'auth/admin-features.php';
 ?>
 <div class="flex justify-between bg-indigo-900 py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
@@ -9,8 +8,8 @@ include_once 'auth/admin-features.php';
     </div>
     <div>
         <form class="" action="" method="POST">
-            <input class="rounded-full p-1" type="text" placeholder="Type the id here.." name="search">&nbsp;
-            <input class="rounded-full bg-blue-600 p-1 hover:bg-blue-700 text-white" type="submit" value="Search" name="btn">
+            <input class="rounded-full px-3 py-1" type="text" placeholder="Type the id here.." name="search">&nbsp;
+            <input class="rounded-full bg-blue-600 px-3 py-1 hover:bg-blue-700 text-white" type="submit" value="Search" name="btn">
         </form>
     </div>
 </div>

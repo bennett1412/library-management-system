@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
 
     updateUser($conn,$name,$email,$mobile,$id);
     
+    
 } else {
     header("location: ../admin-update-user-profile.php");
     exit();
