@@ -7,7 +7,7 @@ if(isset($_POST['submit'])){
     $Publisher = $_POST['Publisher'];
     $Category = $_POST['Category'];
     $Copies = $_POST['Copies'];
-    $Available_copies = $Copies;
+    // $Available_copies = $Copies;
     require_once '../../../server/db_connect.php';
     require_once '../auth/admin-features.php';
 
@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
         exit();
     }
 
-    addBook($conn,$ISBN,$book,$author,$Publisher,$Category,$Copies,$Available_copies);
+    addBook($conn,$ISBN,$book,$author,$Publisher,$Category,$Copies);
 
 }
 

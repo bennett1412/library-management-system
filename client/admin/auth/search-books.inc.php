@@ -56,10 +56,10 @@ if (isset($_POST['search'])) {
                         <td class="p-2 border-r"><?php echo $book['COPIES']; ?></td>
 
                         <td>
-                            <form action="edit-booklist.php" method="POST">
-                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>"> 
-                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit" value="Edit" />
-                                <input  type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
+                            <form action="auth/modify-book.inc.php" method="POST">
+                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO'] ?>">
+                                <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit<?php echo $book['B_NO'] ?>" value=" Edit" />
+                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
                             </form>
                         </td>
                     </tr>

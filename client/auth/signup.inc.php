@@ -37,6 +37,8 @@ if(isset($_POST['submit'])){
     }
 
     createUser($conn, $name, $email,$password, $mobile);
+    header("location: ../login.php?error=none");
+    exit();
 }
 
 else{

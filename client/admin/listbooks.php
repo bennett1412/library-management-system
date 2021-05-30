@@ -63,12 +63,9 @@ if ($books = listBooks($conn)) {
                         <td>
                             <!-- <a href="./edit-booklist.php" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a> -->
                             <!-- <a href="./delete-book.php" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" onclick= delete>Remove</a> -->
-                            <form action="auth/edit-booklist.inc.php" method="POST">
+                            <form action="auth/modify-book.inc.php" method="POST">
                                 <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>">
                                 <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit<?php echo $book['B_NO'] ?>" value="Edit" />
-                            </form>
-                            <form action="auth/delete-book.inc.php" method="POST">
-                                <input type="hidden" name="B_NO" value="<?php echo $book['B_NO']?>"> 
                                 <input  type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $book['B_NO'] ?>" value="Delete" />
                             </form>
                         </td>

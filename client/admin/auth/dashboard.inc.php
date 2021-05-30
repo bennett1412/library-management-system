@@ -38,7 +38,7 @@ require_once('../../server/db_connect.php');
             <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
                 <div class="absolute right-0 w-56 mt-8 origin-top-right bg-indigo-500 divide-y divide-gray-100 rounded-md shadow-lg outline-none border border-indigo-800" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
                     <div class="py-1 divide-y divide-indigo-800">
-                        <a href="../../" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Students</a>
+                        <a href="../admin/add-users.php" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Users</a>
                         <a href="../admin/add-books.php" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
 
                     </div>
@@ -46,9 +46,9 @@ require_once('../../server/db_connect.php');
             </div>
         </div>
 
-        <a href="#">
+        <a href="return-books.php">
             <div class="p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
-                <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Remove</span>
+                <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold">Return</span>
             </div>
         </a>
     </div>
