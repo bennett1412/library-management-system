@@ -2,7 +2,7 @@
 
 if (isset($_POST['search'])) {
     $user_id = $_POST['search'];
-
+ 
     if ($issues = listIssues($conn, $user_id)) {
 
 
@@ -58,7 +58,17 @@ if (isset($_POST['search'])) {
                             <td class="p-2 border-r"><?php echo $issue['issuer']; ?></td>
                             <td class="p-2 border-r"><?php echo $issue['date_of_issue']; ?></td>
                             <td class="p-2 border-r"><?php echo $issue['date_of_return']; ?></td>
-                            <td class="p-2 border-r"><?php echo ($issue['fine'])? $issue['fine']:0; ?></td>
+                            <td class="p-2 border-r"><?php
+                                            $date1 = new DateTime($issue['date_of_return']);
+                                            $date2 = new DateTime(date('Y-m-d'));
+                                            if($date2 > $date1){
+                                            $interval = $date1->diff($date2);
+                                            echo 'Rs. '. 1*($interval->days);
+                                             }
+                                             else{
+                                                 echo 'Rs. 0';
+                                             }   
+                                                        ?></td>
 
 
 

@@ -30,6 +30,8 @@ if(isset($_POST['submit'])){
     //     header("location: ../signup.php?error=invalidmobile");
     //     exit();
     // }
+    
+    // add a check for passwords too 
 
     if (pwdMatch($password,$password_confirmation) !== false) {
         header("location: ../../signup.php?error=passwordsdontmatch");
