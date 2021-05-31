@@ -16,15 +16,17 @@ if (isset($_POST['submit'])) {
         header("location: ../issue-book.php?error=invalid-book-id");
         exit();
     }
-
-    if (($user = grabUser($conn, $user_id)) === false) {
+    $user = grabUser($conn, $user_id);
+    if ($user === false) {
         header("location: ../issue-book.php?error=invalid-user-id");
         exit();
     }
+    else
     if ($user['staff'] == 0) {
-        if(booksIssued($user_id) >= 3)
+        if(booksIssued($conn,$user_id) >= 3)
         {
-            header("location: ../issue-books.php?error=quotafull");
+            header("location: ../issue-book.php?error=quotafull");
+            exit();
         }
     }
 

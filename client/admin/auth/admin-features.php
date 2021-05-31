@@ -427,7 +427,6 @@ function issueBook($conn,$u_id,$b_id,$a_id){
 
 function listIssues($conn,$user_id)
 {
-
     $sql = "SELECT * FROM issues WHERE BORROWER = ? AND returned = 0;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -446,10 +445,31 @@ function listIssues($conn,$user_id)
     return $resultData;
     mysqli_stmt_close($stmt);
 }
-function booksIssued($user_id,$conn){
-    $sql = 'SELECT COUNT(borrower) FROM issues WHERE borrower = ?;';
+
+
+function booksIssued($conn,$user_id){
+    $sql = 'SELECT count(borrower) FROM issues WHERE borrower = ?;';
     $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../listbooks.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row['count(borrower)'];;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+
 }
+
 function returnBook($conn,$i_id){
     $sql = 'UPDATE issues SET returned = 1  WHERE issue_id = ?;';
     $stmt = mysqli_stmt_init($conn);
