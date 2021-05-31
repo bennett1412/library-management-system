@@ -73,7 +73,7 @@ function createAdmin($conn, $name, $email, $password,$mobile)
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
    
-    header("location: ../admin-login.php?error=none");
+    header("location: ../admin-dashboard.php?error=none");
     exit();
 }
 //login functions

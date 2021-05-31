@@ -1,4 +1,3 @@
-
 <?php
 require_once('../../server/db_connect.php');
 ?>
@@ -8,7 +7,7 @@ require_once('../../server/db_connect.php');
         <span class="font-semibold mr-2 text-left flex-auto">Hey there, <?php echo $_SESSION["name"] ?></span>
     </div>
     <div>
-         <div class="dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
+        <div class="dropdown p-2 bg-indigo-800 text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:bg-indigo-500" role="alert">
             <span class="rounded-md shadow-s"><button class="inline-flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold transition duration-150 ease-in-out hover:outline-nonet">
                     <span class="">Search</span>
                     <svg class="w-3 h-3 ml-1 -mr-1 align-center" viewBox="0 0 20 20" fill="currentColor">
@@ -40,7 +39,7 @@ require_once('../../server/db_connect.php');
                     <div class="py-1 divide-y divide-indigo-800">
                         <a href="../admin/add-users.php" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Users</a>
                         <a href="../admin/add-books.php" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
-
+                        <a href="../admin/admin-signup.php" tabindex="2" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Admins</a>
                     </div>
                 </div>
             </div>
@@ -98,64 +97,65 @@ require_once('../../server/db_connect.php');
     <!-- TODO addd a table here -->
     <div class="w-full px-2">
         <?php
-if ($users = listUsers($conn)) {
-?>
+        if ($users = listUsers($conn)) {
+        ?>
 
-    <div class="table w-full p-2">
-        <table class="w-full border">
-            <thead>
-                <tr class="bg-gray-50 border-b">
-                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
-                        <div class="flex items-center justify-center">
-                            ID
-                        </div>
-                    </th>
+            <div class="table w-full p-2">
+                <table class="w-full border">
+                    <thead>
+                        <tr class="bg-gray-50 border-b">
+                            <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                                <div class="flex items-center justify-center">
+                                    ID
+                                </div>
+                            </th>
 
-                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
-                        <div class="flex items-center justify-center">
-                            NAME
-                        </div>
-                    </th>
+                            <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                                <div class="flex items-center justify-center">
+                                    NAME
+                                </div>
+                            </th>
 
-                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
-                        <div class="flex items-center justify-center">
-                            EMAIL
-                        </div>
-                    </th>
-                    <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
-                        <div class="flex items-center justify-center">
-                            MOBILE
-                        </div>
-                    </th>
+                            <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                                <div class="flex items-center justify-center">
+                                    EMAIL
+                                </div>
+                            </th>
+                            <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
+                                <div class="flex items-center justify-center">
+                                    MOBILE
+                                </div>
+                            </th>
 
-                    <th class="p-2 border-r cursor-pointer text-sm  text-blue-800">
-                        <div class="flex items-center justify-center">
-                            STAFF
-                        </div>
-                    </th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($user = mysqli_fetch_assoc($users)) { ?>
-                    <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
+                            <th class="p-2 border-r cursor-pointer text-sm  text-blue-800">
+                                <div class="flex items-center justify-center">
+                                    STAFF
+                                </div>
+                            </th>
 
 
-                        <td class="p-2 border-r"><?php echo $user['id']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['name']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['email']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
-                        <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
-                        <td>
-                            <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                            <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
-                        </td>
-                    </tr>
-                <?php }} ?>
-            </tbody>
-        </table>
-    </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($user = mysqli_fetch_assoc($users)) { ?>
+                            <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
+
+
+                                <td class="p-2 border-r"><?php echo $user['id']; ?></td>
+                                <td class="p-2 border-r"><?php echo $user['name']; ?></td>
+                                <td class="p-2 border-r"><?php echo $user['email']; ?></td>
+                                <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
+                                <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
+                                <td>
+                                    <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
+                                    <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
+                                </td>
+                            </tr>
+                    <?php }
+                    } ?>
+                    </tbody>
+                </table>
+            </div>
     </div>
 
 </div>
@@ -165,5 +165,4 @@ if ($users = listUsers($conn)) {
         transform: translate(0) scale(1);
         visibility: visible;
     }
-
 </style>
