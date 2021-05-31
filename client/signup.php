@@ -28,6 +28,10 @@ include_once 'header.php';
                 <label class="sr-only" for="password_confirmation">Password Confirmation</label>
                 <input type="password" name="password_confirmation" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password_confirmation" placeholder="Enter Password Again">
             </div>
+            <div class="mb-4">
+                <input type="radio" name="staff" value="1" id="staff">
+                <label class="" for="staff">Staff</label>
+            </div>
             <button type="submit" name="submit" class="bg-blue-600 hover:bg-blue-700 bg-opacity-100 text-white font-bold py-2 px-4 rounded">Submit</button>
             <br>
             <div class="text-red-600 my-3 font-bold py-1 rounded">

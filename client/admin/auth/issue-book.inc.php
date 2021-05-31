@@ -17,9 +17,15 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    if (grabUser($conn, $user_id) === false) {
+    if (($user = grabUser($conn, $user_id)) === false) {
         header("location: ../issue-book.php?error=invalid-user-id");
         exit();
+    }
+    if ($user['staff'] == 0) {
+        if(booksIssued($user_id) >= 3)
+        {
+            header("location: ../issue-books.php?error=quotafull");
+        }
     }
 
     issueBook($conn,$user_id,$book_id,$admin_id);

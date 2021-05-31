@@ -413,18 +413,11 @@ function issueBook($conn,$u_id,$b_id,$a_id){
 
     $i_date = date('Y-m-d');
     $r_date = date('Y-m-d',strtotime($i_date . '+2 weeks' ));
-    echo $u_id;
-    echo $b_id;
-    echo $a_id;
-    echo $i_date; 
-    echo $r_date;
-
     mysqli_stmt_bind_param($stmt, "iiiss", $b_id,$u_id,$a_id,$i_date,$r_date);
     mysqli_stmt_execute($stmt);
     echo mysqli_stmt_error($stmt);
     mysqli_stmt_close($stmt);
-
-    // header("location: ../../admin/issue-book.php?error=none");
+    header("location: ../../admin/issue-book.php?error=none");
     exit();   
 }
 
@@ -453,7 +446,10 @@ function listIssues($conn,$user_id)
     return $resultData;
     mysqli_stmt_close($stmt);
 }
-
+function booksIssued($user_id,$conn){
+    $sql = 'SELECT COUNT(borrower) FROM issues WHERE borrower = ?;';
+    $stmt = mysqli_stmt_init($conn);
+}
 function returnBook($conn,$i_id){
     $sql = 'UPDATE issues SET returned = 1  WHERE issue_id = ?;';
     $stmt = mysqli_stmt_init($conn);

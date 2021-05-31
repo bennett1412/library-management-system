@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
-
+    $staff = $_POST['staff'];
     require_once '../../../server/db_connect.php';
     require_once '../../auth/functions.php';
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    createUser($conn, $name, $email, $password, $mobile);
+    createUser($conn, $name, $email, $password, $mobile,$staff);
     header("location: ../admin-dashboard.php?error=none");
     exit();
 } else {

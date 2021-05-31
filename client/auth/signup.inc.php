@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
-
+    $staff = $_POST['staff'];
     require_once '../../server/db_connect.php';
     require_once 'functions.php';
 
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
         exit();
     }
 
-    createUser($conn, $name, $email,$password, $mobile);
+    createUser($conn, $name, $email,$password, $mobile,$staff);
     header("location: ../login.php?error=none");
     exit();
 }
@@ -46,5 +46,4 @@ if(isset($_POST['submit'])){
 else{
     header("location: ../signup.php");
     exit();
-    // echo 'something fishy';
 }
