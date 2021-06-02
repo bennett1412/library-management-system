@@ -84,8 +84,8 @@ function searchBooks($conn,$name){
 
     $resultData = mysqli_stmt_get_result($stmt);
     
-    if ($row = mysqli_fetch_assoc($resultData)) {
-        return $row;
+    if ($resultData) {
+        return $resultData;
     } else {
         $result = false;
         return $result;
@@ -427,7 +427,7 @@ function issueBook($conn,$u_id,$b_id,$a_id){
 
 function listIssues($conn,$user_id)
 {
-    $sql = "SELECT * FROM issues WHERE BORROWER = ? AND returned = 0;";
+    $sql = "SELECT * FROM issues WHERE BORROWER = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);

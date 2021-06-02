@@ -1,11 +1,6 @@
 <?php
 
-if (isset($_POST['search'])) {
-    $user_id = $_POST['search'];
- 
-    if ($issues = listIssues($conn, $user_id)) {
-
-
+    if ($issues = listIssues($conn, $_SESSION['id'])) {
 ?>
 
         <div class="table w-full p-2">
@@ -72,11 +67,8 @@ if (isset($_POST['search'])) {
                             <td>
                             <?php 
                             if ($issue['returned'] === 0)
-                            echo "<form action='auth/return-books.inc.php' method='POST'>
-                                    <input type='hidden' name='issue-id' value='{$issue['issue_id']}'>
-                                    <input type='submit' class='bg-green-500 px-2 py-1 text-white hover:shadow-lg text-s font-thin' name='issue{$issue['issue_id']}' value='Return' />
-                                </form>";
-                            else echo "Returned";
+                            echo "<p class='text-red-600'>Not Returned</p>";
+                            else echo "<p class='text-green-600'>Returned</p>";
                                 ?>
                             </td>
                         </tr>
@@ -84,5 +76,5 @@ if (isset($_POST['search'])) {
                 </tbody>
             </table>
         </div>
-<?php }}
+<?php }
 ?>
