@@ -6,7 +6,11 @@ if(isset($_POST['submit'])){
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
-    $staff = $_POST['staff'];
+    if (isset($_POST['staff'])) {
+        $staff = $_POST['staff'];
+    } else {
+        $staff = 0;
+    }
     require_once '../../server/db_connect.php';
     require_once 'functions.php';
 
@@ -27,7 +31,6 @@ if(isset($_POST['submit'])){
 
     if (invalidMobile($mobile) === true) {
          header("location: ../signup.php?error=invalidmobile");
-        echo preg_match('/^[789]\d{9}$/', $mobile);
         exit();
     }
     

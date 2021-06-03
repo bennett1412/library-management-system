@@ -42,10 +42,10 @@ include_once 'header.php';
                     }
 
                     if ($_GET["error"] == "invalidmobile") {
-                        echo "<p>Invalid Password, minimum eight characters, at least one letter and one number</p>";
+                        echo "<p>Invalid Mobile</p>";
                     }
                     if ($_GET["error"] == "invalidpassword") {
-                        echo "<p>Invalid Password</p>";
+                        echo "<p>Invalid Password, minimum eight characters, at least one letter and one number</p>";
                     }
 
                     if ($_GET["error"] == "passwordsdontmatch") {

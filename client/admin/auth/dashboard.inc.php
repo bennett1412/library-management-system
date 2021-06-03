@@ -97,7 +97,7 @@ require_once('../../server/db_connect.php');
     <!-- TODO addd a table here -->
     <div class="w-full px-2">
         <?php
-        if ($users = listUsers($conn)) {
+        if ($requests = fetchReq($conn)) {
         ?>
 
             <div class="table w-full p-2">
@@ -106,50 +106,33 @@ require_once('../../server/db_connect.php');
                         <tr class="bg-gray-50 border-b">
                             <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
                                 <div class="flex items-center justify-center">
-                                    ID
+                                    Book
                                 </div>
                             </th>
 
                             <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
                                 <div class="flex items-center justify-center">
-                                    NAME
+                                    Author
                                 </div>
                             </th>
 
                             <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
                                 <div class="flex items-center justify-center">
-                                    EMAIL
+                                    Publisher
                                 </div>
                             </th>
-                            <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
-                                <div class="flex items-center justify-center">
-                                    MOBILE
-                                </div>
-                            </th>
-
-                            <th class="p-2 border-r cursor-pointer text-sm  text-blue-800">
-                                <div class="flex items-center justify-center">
-                                    STAFF
-                                </div>
-                            </th>
-
 
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($user = mysqli_fetch_assoc($users)) { ?>
+                        <?php while ($request = mysqli_fetch_assoc($requests)) { ?>
                             <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
 
 
-                                <td class="p-2 border-r"><?php echo $user['id']; ?></td>
-                                <td class="p-2 border-r"><?php echo $user['name']; ?></td>
-                                <td class="p-2 border-r"><?php echo $user['email']; ?></td>
-                                <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
-                                <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
-                                <td>
-                                    <a href="#" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a>
-                                    <a href="#" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin">Remove</a>
-                                </td>
+                                <td class="p-2 border-r"><?php echo $request['Book']; ?></td>
+                                <td class="p-2 border-r"><?php echo $request['Author']; ?></td>
+                                <td class="p-2 border-r"><?php echo $request['Publisher']; ?></td>
+                                
                             </tr>
                     <?php }
                     } ?>

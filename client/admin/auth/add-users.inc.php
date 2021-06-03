@@ -6,7 +6,12 @@ if (isset($_POST['submit'])) {
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
+    if(isset($_POST['staff'])){
     $staff = $_POST['staff'];
+    }
+    else {
+        $staff = 0;
+    }
     require_once '../../../server/db_connect.php';
     require_once '../../auth/functions.php';
 

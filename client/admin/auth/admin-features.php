@@ -484,3 +484,27 @@ function returnBook($conn,$i_id){
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
+
+// request fetch 
+function fetchReq($conn){
+    $sql = 'SELECT * FROM requests;';
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../admin-dashboard.php?error=$er_msg");
+        exit();
+    }
+    // mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($resultData) {
+        return $resultData;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+
+}

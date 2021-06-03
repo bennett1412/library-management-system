@@ -228,9 +228,9 @@ function emptyInputRequest($name,$book,$author)
     return $result;
 }
 
-function createBookRequest($conn, $name, $book, $author)
+function createBookRequest($conn, $publisher, $book, $author)
 {
-    $sql = "INSERT INTO requests (name,book,author) VALUES (?,?,?);";
+    $sql = "INSERT INTO requests (book,author,publisher) VALUES (?,?,?);";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -238,7 +238,7 @@ function createBookRequest($conn, $name, $book, $author)
         header("location: ../../user-request.php?error=stmtfailed");
         exit();
      }
-    mysqli_stmt_bind_param($stmt, "sss", $name, $book, $author);
+    mysqli_stmt_bind_param($stmt, "sss",$book, $author,$publisher);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
    
