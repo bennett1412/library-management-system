@@ -29,8 +29,15 @@ session_start();
 
 
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none" id="navbarSupportedContent">
-            <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="">LibMe</a>
-            <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="user-dashboard.php">Dashboard </a>
+            <?php
+            if (isset($_SESSION["id"])) {
+                echo ' <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="">LibMe</a>';
+            echo '<a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="user-dashboard.php">Dashboard </a>';
+            }
+            else{
+            echo '<a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="../index.php">LibMe</a>';
+            }
+             ?>
         </div>
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none">
             <?php

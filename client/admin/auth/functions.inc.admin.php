@@ -22,6 +22,23 @@ function invalidEmail($email){
     }
     return $result;
 }
+function invalidMobile($mobile){
+    if(!preg_match('/^[789]\d{9}$/',$mobile)){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function invalidPw($mobile)
+{
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $mobile)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function pwdMatch($password,$password_confirmation)
 {

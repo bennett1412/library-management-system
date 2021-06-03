@@ -11,28 +11,31 @@ if (isset($_POST['submit'])) {
     require_once '../../auth/functions.php';
 
     if (emptyInputSignup($name, $email, $mobile, $password, $password_confirmation) !== false) {
-        header("location: ../signup.php?error=emptyinput");
+        header("location: ../add-users.php?error=emptyinput");
         exit();
     }
 
     if (invalidEmail($email) !== false) {
-        header("location: ../signup.php?error=invalidemail");
+        header("location: ../add-users.php?error=invalidemail");
         exit();
     }
 
     if (emailExists($conn, $email) !== false) {
-        header("location: ../signup.php?error=emailexists");
+        header("location: ../add-users.php?error=emailexists");
         exit();
     }
 
-    // TODO: add check for mobile nos 
-    // if (invalidMobile($mobile) !== false) {
-    //     header("location: ../signup.php?error=invalidmobile");
-    //     exit();
-    // }
+    if (invalidMobile($mobile) !== false) {
+        header("location: ../add-users.php?error=invalidmobile");
+        exit();
+    }
 
+    if (invalidPw($password) !== false) {
+        header("location: ../add-users.php?error=invalidpassword");
+        exit();
+    }
     if (pwdMatch($password, $password_confirmation) !== false) {
-        header("location: ../../signup.php?error=passwordsdontmatch");
+        header("location: ../../add-users.php?error=passwordsdontmatch");
         exit();
     }
 
