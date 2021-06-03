@@ -25,11 +25,15 @@ if(isset($_POST['submit'])){
         exit();
     }
 
-    // TODO: add check for mobile nos 
-    // if (invalidMobile($mobile) !== false) {
-    //     header("location: ../signup.php?error=invalidmobile");
-    //     exit();
-    // }
+    if (invalidMobile($mobile) !== false) {
+        header("location: ../admin-signup.php?error=invalidmobile");
+        exit();
+    }
+
+    if (invalidPw($password) !== false) {
+        header("location: ../admin-signup.php?error=invalidpassword");
+        exit();
+    }
 
     if (pwdMatch($password,$password_confirmation) !== false) {
         header("location: ../admin-signup.php?error=passwordsdontmatch");

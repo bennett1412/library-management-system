@@ -30,10 +30,11 @@ include_once 'admin-config.php';
 
 
         <div class="toggle hidden md:flex w-full md:w-auto text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none" id="navbarSupportedContent">
-            <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="#">LibMe</a>
-            <a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="admin-dashboard.php">Dashboard</a>
-            <?php if (isset($_SESSION["id"])) {
-                echo '<a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="issue-book.php">Issue</a>';
+            <a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="../../index.php">LibMe</a>
+                 <?php if (isset($_SESSION["id"])) {
+            echo '<a class="block md:inline-block text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="">LibMe</a>';
+            echo '<a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="admin-dashboard.php">Dashboard</a>';
+            echo '<a class="block md:inline-block text-blue-900 hover:text-blue-900 px-3 py-3 border-b-2 border-blue-900 md:border-none" href="issue-book.php">Issue</a>';
             } ?>
 
         </div>

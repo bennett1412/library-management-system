@@ -1,19 +1,19 @@
 <?php 
 
 if(isset($_POST['submit'])){
-    $name = $_POST['name'];
+    $publisher = $_POST['publisher'];
     $book = $_POST['book'];
     $author = $_POST['author'];
 
     require_once '../../server/db_connect.php';
     require_once 'functions.php';
 
-    if(emptyInputRequest($name,$book,$author) !== false){
+    if(emptyInputRequest($publisher,$book,$author) !== false){
         header("location: ../user-request.php?error=emptyinput");
         exit();
     }
 
-    createBookRequest($conn,$name,$book,$author);
+    createBookRequest($conn,$publisher,$book,$author);
 
 }
 

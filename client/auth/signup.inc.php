@@ -6,7 +6,11 @@ if(isset($_POST['submit'])){
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
-
+    if (isset($_POST['staff'])) {
+        $staff = $_POST['staff'];
+    } else {
+        $staff = 0;
+    }
     require_once '../../server/db_connect.php';
     require_once 'functions.php';
 
@@ -25,22 +29,27 @@ if(isset($_POST['submit'])){
         exit();
     }
 
-    // TODO: add check for mobile nos 
-    // if (invalidMobile($mobile) !== false) {
-    //     header("location: ../signup.php?error=invalidmobile");
-    //     exit();
-    // }
-
+    if (invalidMobile($mobile) === true) {
+         header("location: ../signup.php?error=invalidmobile");
+        exit();
+    }
+    
+    if (invalidPw($password) !== false) {
+        header("location: ../signup.php?error=invalidpassword");
+        exit();
+    }
+   
     if (pwdMatch($password,$password_confirmation) !== false) {
         header("location: ../../signup.php?error=passwordsdontmatch");
         exit();
     }
 
-    createUser($conn, $name, $email,$password, $mobile);
+    createUser($conn, $name, $email,$password, $mobile,$staff);
+    header("location: ../login.php?error=none");
+    exit();
 }
 
 else{
     header("location: ../signup.php");
     exit();
-    // echo 'something fishy';
 }

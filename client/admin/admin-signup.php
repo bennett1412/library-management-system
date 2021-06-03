@@ -41,6 +41,13 @@ include_once 'header.php';
                         echo "<p>Please enter a valid email</p>";
                     }
 
+                    if ($_GET["error"] == "invalidmobile") {
+                        echo "<p>Invalid Mobile</p>";
+                    }
+                    if ($_GET["error"] == "invalidpassword") {
+                        echo "<p>Invalid Password, minimum eight characters, at least one letter and one number</p>";
+                    }
+
                     if ($_GET["error"] == "passwordsdontmatch") {
                         echo "<p> Fill in all the </p>";
                     }

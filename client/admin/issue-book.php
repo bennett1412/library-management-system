@@ -40,10 +40,13 @@ include_once 'header.php';
                         echo "<p>Fill in all the Fields</p>";
                     }
                     if ($_GET["error"] == "stmtfailed") {
-                        echo "Something went wrong. Please try again!!</p>";
+                        echo "<p>Something went wrong. Please try again!!</p>";
+                    }
+                    if ($_GET["error"] == "quotafull") {
+                        echo "<p>This student has already issued 3 books.</p>";
                     }
                     if ($_GET["error"] == "none") {
-                        echo "<p>Successfully issued!!</p>";
+                        echo "<p class='text-green-600'>Successfully issued!!</p>";
                     }
                 }
                 ?>
