@@ -2,10 +2,10 @@
 
 
 if (isset($_POST['search'])) {
-    $id = $_POST['search'];
+    $reg_no = $_POST['reg_no'];
     include_once 'admin-features.php';
     require_once '../../server/db_connect.php';
-    if ($user = searchUsers($conn, $id)) {
+    if ($user = searchUsers($conn, $reg_no)) {
 
 ?>
 
@@ -16,7 +16,7 @@ if (isset($_POST['search'])) {
 
                         <th class="p-2 border-r cursor-pointer text-sm text-blue-800">
                             <div class="flex items-center justify-center">
-                              ID
+                              REG NUMBER
                             </div>
                         </th>
 
@@ -49,7 +49,7 @@ if (isset($_POST['search'])) {
 
                     <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
 
-                        <td class="p-2 border-r"><?php echo $user['id']; ?></td>
+                        <td class="p-2 border-r"><?php echo $user['reg_no']; ?></td>
                         <td class="p-2 border-r"><?php echo $user['name']; ?></td>
                         <td class="p-2 border-r"><?php echo $user['email']; ?></td>
                         <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>

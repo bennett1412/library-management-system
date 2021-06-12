@@ -58,7 +58,7 @@ if (isset($_POST['search'])) {
                             <td class="p-2 border-r"><?php echo $issue['issuer']; ?></td>
                             <td class="p-2 border-r"><?php echo $issue['date_of_issue']; ?></td>
                             <td class="p-2 border-r"><?php echo $issue['date_of_return']; ?></td>
-                            <td class="p-2 border-r"><?php
+                            <td id="fine" class="p-2 border-r"><?php
                                             $date1 = new DateTime($issue['date_of_return']);
                                             $date2 = new DateTime(date('Y-m-d'));
                                             if($issue['returned'] === 0 && ($date2 > $date1)){                                              

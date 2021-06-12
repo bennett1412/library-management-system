@@ -19,6 +19,8 @@ if (array_key_exists("delete" . $id, $_POST)) {
     $_SESSION['user-email'] = $user['email'];
     $_SESSION['user-mobile'] = $user['mobile'];
     $_SESSION['user-id'] = $user['id'];
+    $_SESSION['user-reg'] = $user['reg_no'];
+
     header("location: ../admin-update-user-profile.php");
 }
 else {

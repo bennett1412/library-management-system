@@ -1,12 +1,11 @@
 <?php
 
 if (isset($_POST['search'])) {
-    $name = $_POST['search'];
+    
+    $name = $_POST['name'];
     include_once 'auth/admin-features.php';
     require_once '../../server/db_connect.php';
     if ($books = searchBooks($conn, $name)) {
-
-
 ?>
 
         <div class="table w-full p-2">
@@ -56,8 +55,7 @@ if (isset($_POST['search'])) {
                             <td class="p-2 border-r"><?php echo $book['COPIES']; ?></td>
 
                             <td>
-                                <!-- <a href="./edit-booklist.php" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin">Edit</a> -->
-                                <!-- <a href="./delete-book.php" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" onclick= delete>Remove</a> -->
+                                
                                 <form action="auth/modify-book.inc.php" method="POST">
                                     <input type="hidden" name="B_NO" value="<?php echo $book['B_NO'] ?>">
                                     <input type="submit" class="bg-blue-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="edit<?php echo $book['B_NO'] ?>" value="Edit" />

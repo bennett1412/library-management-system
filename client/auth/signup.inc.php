@@ -4,6 +4,7 @@ if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
+    $reg_no = $_POST['reg_no'];
     $password = $_POST['password'];
     $password_confirmation = $_POST['password_confirmation'];
     if (isset($_POST['staff'])) {
@@ -14,7 +15,7 @@ if(isset($_POST['submit'])){
     require_once '../../server/db_connect.php';
     require_once 'functions.php';
 
-    if(emptyInputSignup($name,$email,$mobile,$password,$password_confirmation) !== false){
+    if(emptyInputSignup($name,$reg_no,$email,$mobile,$password,$password_confirmation) !== false){
         header("location: ../signup.php?error=emptyinput");
         exit();
     }
@@ -44,7 +45,7 @@ if(isset($_POST['submit'])){
         exit();
     }
 
-    createUser($conn, $name, $email,$password, $mobile,$staff);
+    createUser($conn, $name, $email,$password, $mobile,$staff,$reg_no);
     header("location: ../login.php?error=none");
     exit();
 }

@@ -12,6 +12,10 @@ include_once 'header.php';
                 <input name="name" type="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="name" aria-describedby="name" placeholder="Name">
             </div>
             <div class="mb-4">
+                <label class="sr-only" for="reg">Registration Number</label>
+                <input name="reg_no" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="reg_no" aria-describedby="reg_no" placeholder="Registration Number">
+            </div>
+            <div class="mb-4">
                 <label class="sr-only" for="Email">Email address</label>
                 <input type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Email" aria-describedby="email" placeholder="Email">
 

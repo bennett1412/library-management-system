@@ -2,6 +2,7 @@
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
+    $reg_no = $_POST['reg_no'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
@@ -14,8 +15,8 @@ if (isset($_POST['submit'])) {
     }
     require_once '../../../server/db_connect.php';
     require_once '../../auth/functions.php';
-
-    if (emptyInputSignup($name, $email, $mobile, $password, $password_confirmation) !== false) {
+//update this function for reg
+    if (emptyInputSignup($name,$reg_no, $email, $mobile, $password, $password_confirmation) !== false) {
         header("location: ../add-users.php?error=emptyinput");
         exit();
     }
@@ -44,7 +45,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    createUser($conn, $name, $email, $password, $mobile,$staff);
+    createUser($conn, $name, $email, $password, $mobile,$staff,$reg_no);
     header("location: ../admin-dashboard.php?error=none");
     exit();
 } else {

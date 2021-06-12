@@ -12,6 +12,10 @@ include_once 'header.php';
                 <input name="name" type="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="name" aria-describedby="name" placeholder="Name">
             </div>
             <div class="mb-4">
+                <label class="sr-only" for="name">Registration number</label>
+                <input name="reg_no" type="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="reg_no" aria-describedby="name" placeholder="Registration Number">
+            </div>
+            <div class="mb-4">
                 <label class="sr-only" for="Email">Email address</label>
                 <input type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Email" aria-describedby="email" placeholder="Email">
 
@@ -43,6 +47,9 @@ include_once 'header.php';
 
                     if ($_GET["error"] == "invalidemail") {
                         echo "<p>Please enter a valid email</p>";
+                    }
+                    if ($_GET["error"] == "invalidpassword") {
+                        echo "<p>Invalid password, minimum eight characters, at least one letter and one number</p>";
                     }
 
                     if ($_GET["error"] == "passwordsdontmatch") {

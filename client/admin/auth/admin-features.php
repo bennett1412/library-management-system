@@ -68,9 +68,8 @@ function listBooks($conn)
 //search for books
 
 function searchBooks($conn,$name){
-   
-    $qname = '%'.$name.'%';
-    $sql = "SELECT * FROM books WHERE BOOK_NAME LIKE ?;";
+    $qname = "%".$name."%";
+    $sql = "SELECT * FROM books WHERE BOOK_NAME LIKE ? or AUTHOR LIKE ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);
@@ -78,10 +77,11 @@ function searchBooks($conn,$name){
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $qname);
+    mysqli_stmt_bind_param($stmt, "ss", $qname,$qname);
     
     mysqli_stmt_execute($stmt);
-
+    // echo mysqli_stmt_error($stmt);
+    // exit();
     $resultData = mysqli_stmt_get_result($stmt);
     
     if ($resultData) {
@@ -218,7 +218,7 @@ function deleteBook($conn, $bno)
 //to select a user from db
 function grabUser($conn,$id)
 {
-    
+ 
     $sql = "SELECT * FROM users WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -244,7 +244,7 @@ function grabUser($conn,$id)
 function listUsers($conn)
 {
 
-    $sql = "SELECT id,name,email,mobile,staff FROM users;";
+    $sql = "SELECT id,reg_no,name,email,mobile,staff FROM users;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);
@@ -258,12 +258,12 @@ function listUsers($conn)
     return $resultData;
     mysqli_stmt_close($stmt);
 }
-//search for users
 
-function searchUsers($conn, $id)
+//search for users
+function searchUsers($conn, $reg_no)
 {
 
-    $sql = "SELECT id,name,email,mobile,staff FROM users WHERE id = ?;";
+    $sql = "SELECT id,name,email,mobile,staff,reg_no FROM users WHERE reg_no = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);
@@ -271,7 +271,7 @@ function searchUsers($conn, $id)
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_bind_param($stmt, "i", $reg_no);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -340,9 +340,9 @@ function userEmailTaken($conn, $email,$id) //to omit the current email from the 
 
 //update-user 
 
-function updateUser($conn, $name, $email, $mobile,$id)
+function updateUser($conn, $name, $email, $mobile,$reg_no,$id)
 {
-    $sql = 'UPDATE users SET name = ?, email = ?, mobile = ? WHERE id = ?;';
+    $sql = 'UPDATE users SET name = ?, email = ?, mobile = ?, reg_no = ? WHERE id = ?;';
     $stmt = mysqli_stmt_init($conn);
     
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -350,12 +350,14 @@ function updateUser($conn, $name, $email, $mobile,$id)
         header("location: ../update_profile.php?error=$er_msg");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $mobile, $id);
+    mysqli_stmt_bind_param($stmt, "ssssi", $name, $email, $mobile,$reg_no, $id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     unset($_SESSION['user-name']);
     unset($_SESSION['user-email']);
     unset($_SESSION['user-mobile']);
+    unset($_SESSION['user-reg']);
+    unset($_SESSION['user-id']);
     header("location: ../listusers.php?error=none");
     exit();
 }
@@ -507,4 +509,20 @@ function fetchReq($conn){
     }
     mysqli_stmt_close($stmt);
 
+}
+
+//remove an admin 
+function deleteAdmin($conn, $id)
+{
+    $sql = "DELETE FROM admins WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../../admin/search-admin.php?error=$er_msg");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 }

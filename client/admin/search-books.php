@@ -8,8 +8,8 @@ include_once 'header.php';
     </div>
     <div>
         <form class="" action="" method="POST">
-            <input class="rounded-full px-3 py-1" type="text" placeholder="Type the name here.." name="search">&nbsp;
-            <input class="rounded-full bg-blue-600 px-3 py-1 hover:bg-blue-700 text-white" type="submit" value="Search" name="btn">
+            <input class="rounded-full px-3 py-1" type="text" placeholder="Enter title or author" name="name">&nbsp;
+            <input class="rounded-full bg-blue-600 px-3 py-1 hover:bg-blue-700 text-white" type="submit" value="Search" name="search">
         </form>
     </div>
 </div>

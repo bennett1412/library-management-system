@@ -5,11 +5,12 @@ if (isset($_POST['submit'])) {
     $email = $_POST['user-email'];
     $mobile = $_POST['user-mobile'];
     $id = $_POST['user-id'];
+    $reg_no = $_POST['user-reg'];
     require_once "../../../server/db_connect.php";
     require_once "functions.inc.admin.php";
     require_once "admin-features.php";
     // require_once "../../auth/functions.php";
-    if (emptyInputUpdate($name, $email, $mobile) !== false) {
+    if (emptyInputUpdate($name, $email,$mobile,$reg_no) !== false) {
         header("location: ../admin-update-user-profile.php?error=emptyinput");
         exit();
     }
@@ -31,7 +32,7 @@ if (isset($_POST['submit'])) {
     //     exit();
     // }
 
-    updateUser($conn,$name,$email,$mobile,$id);
+    updateUser($conn,$name,$email,$mobile, $reg_no,$id);
     
     
 } else {
