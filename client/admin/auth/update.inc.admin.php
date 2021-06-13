@@ -23,14 +23,11 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-
-    // TODO: add check for mobile nos 
-    // if (invalidMobile($mobile) !== false) {
-    //     header("location: ../signup.php?error=invalidmobile");
-    //     exit();
-    // }
-    
-    updateAdmin($conn, $name, $email, $mobile);
+    if (invalidMobile($mobile) !== false) {
+        header("location: ../admin-update_profile.php?error=invalidmobile");
+        exit();
+    }
+    updateAdmin($conn,$_SESSION['id'] , $name, $email, $mobile);
 } 
 else {
     header("location: ../admin-update_profile.php");

@@ -31,6 +31,9 @@ include_once 'header.php';
                     if ($_GET["error"] == "invalidemail") {
                         echo "<p>Please enter a valid email</p>";
                     }
+                    if ($_GET["error"] == "invalidmobile") {
+                        echo "<p>Invalid Mobile</p>";
+                    }
                     if ($_GET["error"] == "stmtfailed") {
                         echo "Something went wrong. Please try again!!</p>";
                     }

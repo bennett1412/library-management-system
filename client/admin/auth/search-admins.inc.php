@@ -2,10 +2,10 @@
 
 
 if (isset($_POST['search'])) {
-    $id = $_POST['search'];
+    $id = $_POST['id'];
     include_once 'admin-features.php';
     require_once '../../server/db_connect.php';
-    if ($user = searchUsers($conn, $id)) {
+    if ($admin = searchAdmins($conn, $id)) {
 
 ?>
 
@@ -36,29 +36,20 @@ if (isset($_POST['search'])) {
                                 MOBILE
                             </div>
                         </th>
-
-                        <th class="p-2 border-r cursor-pointer text-sm  text-blue-800">
-                            <div class="flex items-center justify-center">
-                                STAFF
-                            </div>
-                        </th>
-
                     </tr>
                 </thead>
                 <tbody>
 
                     <tr class="bg-gray-100 text-center border-b text-sm text-gray-600">
 
-                        <td class="p-2 border-r"><?php echo $user['id']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['name']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['email']; ?></td>
-                        <td class="p-2 border-r"><?php echo $user['mobile']; ?></td>
-                        <td class="p-2 border-r"><?php echo ($user['staff'] == 1) ? 'Yes' : 'No'; ?></td>
-
+                        <td class="p-2 border-r"><?php echo $admin['id']; ?></td>
+                        <td class="p-2 border-r"><?php echo $admin['name']; ?></td>
+                        <td class="p-2 border-r"><?php echo $admin['email']; ?></td>
+                        <td class="p-2 border-r"><?php echo $admin['mobile']; ?></td>
                         <td>
-                            <form action="auth/modify-user.inc.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
-                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $user['id'] ?>" value="Delete" />
+                            <form action="auth/delete-admin.inc.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $admin['id'] ?>">
+                                <input type="submit" class="bg-red-500 p-2 text-white hover:shadow-lg text-xs font-thin" name="delete<?php echo $admin['id'] ?>" value="Delete" />
                             </form>
                         </td>
                     </tr>
@@ -70,7 +61,7 @@ if (isset($_POST['search'])) {
     } else {
         echo "<div class='flex justify-center'>
     <div class = ' w-4/12 bg-white p-6 rounded-lg mt-5 text-red-600'>
-    No such user is exists!!,Please check id again
+    No such admin exists!!,Please check id again
     </div>
     </div>
     ";

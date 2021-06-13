@@ -510,19 +510,52 @@ function fetchReq($conn){
     mysqli_stmt_close($stmt);
 
 }
+//search for users
+function searchAdmins($conn, $id)
+{
+
+    $sql = "SELECT id,name,email,mobile FROM admins WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $er_msg = mysqli_stmt_error($stmt);
+        header("location: ../search-admins.php?error=$er_msg");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+    mysqli_stmt_close($stmt);
+}
 
 //remove an admin 
 function deleteAdmin($conn, $id)
 {
     $sql = "DELETE FROM admins WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
-
+    session_start();
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);
         header("location: ../../admin/search-admin.php?error=$er_msg");
         exit();
     }
     mysqli_stmt_bind_param($stmt, "i", $id);
+    if($id == $_SESSION['id']){
+        session_unset();
+        session_destroy();
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../../../index.php");
+        exit();
+    }
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }

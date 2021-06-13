@@ -24,11 +24,10 @@ if (isset($_POST['submit'])) {
     }
 
 
-    // TODO: add check for mobile nos 
-    // if (invalidMobile($mobile) !== false) {
-    //     header("location: ../signup.php?error=invalidmobile");
-    //     exit();
-    // }
+    if (invalidMobile($mobile) === true) {
+        header("location: ../update_profile.php?error=invalidmobile");
+        exit();
+    }
     
     updateUser($conn, $name, $email, $mobile);
 } 

@@ -20,7 +20,7 @@ require_once('../../server/db_connect.php');
                     <div class="py-1 divide-y divide-indigo-800">
                         <a href="search-users.php" tabindex="0" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Users</a>
                         <a href="search-books.php" tabindex="1" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Books</a>
-
+                        <a href="search-admins.php" tabindex="2" class="text-white flex justify-between w-full px-4 py-2 text-sm leading-5 hover:font-bold text-left" role="menuitem">Admins</a>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@ require_once('../../server/db_connect.php');
                                 <td class="p-2 border-r"><?php echo $request['Book']; ?></td>
                                 <td class="p-2 border-r"><?php echo $request['Author']; ?></td>
                                 <td class="p-2 border-r"><?php echo $request['Publisher']; ?></td>
-                                
+
                             </tr>
                     <?php }
                     } ?>

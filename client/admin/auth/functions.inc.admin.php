@@ -31,9 +31,9 @@ function invalidMobile($mobile){
     }
 }
 
-function invalidPw($mobile)
+function invalidPw($password)
 {
-    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $mobile)) {
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
         return true;
     } else {
         return false;
@@ -158,8 +158,7 @@ function emailTaken($conn, $email) //difference between emailTaken and emailExis
     mysqli_stmt_close($stmt);
 }
 
-function grabAdmin($conn){
-    session_start();
+function grabAdmin($conn,$id){
     $sql = "SELECT * FROM admins WHERE id = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -167,7 +166,7 @@ function grabAdmin($conn){
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "i", $_SESSION["id"]);
+    mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -193,25 +192,23 @@ function emptyInputUpdate($email, $name,$mobile)
     return $result;
 }
 
-function updateAdmin($conn, $name, $email, $mobile)
+function updateAdmin($conn,$id ,$name, $email, $mobile)
 {
     $sql = 'UPDATE admins SET name = ?, email = ?, mobile = ? WHERE id = ?;';
     $stmt = mysqli_stmt_init($conn);
-    session_start();
+    // session_start();
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt);// error from the prepared stmt
         header("location: ../update_profile.php?error=$er_msg");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $mobile,$_SESSION["id"]);
+    mysqli_stmt_bind_param($stmt, "sssi", $name, $email, $mobile,$id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    $updatedAdmin = grabAdmin($conn);
+    $updatedAdmin = grabAdmin($conn,$id);
     $_SESSION["email"] = $updatedAdmin["email"];
     $_SESSION["name"] = $updatedAdmin["name"];
     $_SESSION["mobile"] = $updatedAdmin["mobile"];
-    // echo($_SESSION["name"]);
-    // die($_SESSION["id"]);
     header("location: ../admin-update_profile.php?error=none");
     exit();
 }

@@ -14,7 +14,7 @@ if (array_key_exists("delete" . $bno, $_POST)) {
     header("location: ../listbooks.php");
 } 
 else {
-    header("location: ../delete-book.php");
+    header("location: ../listbooks.php");
     exit();
     // echo 'something fishy';
 }

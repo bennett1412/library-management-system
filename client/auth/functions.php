@@ -31,9 +31,9 @@ function invalidMobile($mobile)
     }
 }
 
-function invalidPw($mobile)
+function invalidPw($password)
 {
-    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $mobile)) {
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
         return true;
     } else {
         return false;
