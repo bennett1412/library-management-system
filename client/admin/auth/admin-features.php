@@ -472,17 +472,17 @@ function booksIssued($conn,$user_id){
 
 }
 
-function returnBook($conn,$i_id){
-    $sql = 'UPDATE issues SET returned = 1  WHERE issue_id = ?;';
+function returnBook($conn,$i_id,$fine){
+    $sql = 'UPDATE issues SET returned = 1, fine = ?  WHERE issue_id = ? ;';
     $stmt = mysqli_stmt_init($conn);
-  
+    
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         $er_msg = mysqli_stmt_error($stmt); // error from the prepared stmt
         header("location: ../return-books.php?error=$er_msg");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "i",$i_id);
+    mysqli_stmt_bind_param($stmt, "ii" ,$fine,$i_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }

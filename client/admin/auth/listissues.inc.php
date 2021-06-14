@@ -61,22 +61,25 @@ if (isset($_POST['search'])) {
                             <td id="fine" class="p-2 border-r"><?php
                                             $date1 = new DateTime($issue['date_of_return']);
                                             $date2 = new DateTime(date('Y-m-d'));
+                                            $fine = 0;
                                             if($issue['returned'] === 0 && ($date2 > $date1)){                                              
                                             $interval = $date1->diff($date2);
+                                            $fine = 1 * ($interval->days);
                                             echo 'Rs. '. 1*($interval->days);
                                              }
-                                             else{
-                                                 echo 'Rs. 0';
+                                             else {
+                                                 echo $issue['fine'];
                                                 }   
                                                      ?></td>
                             <td>
                             <?php 
-                            if ($issue['returned'] === 0)
-                            echo "<form action='auth/return-books.inc.php' method='POST'>
-                                    <input type='hidden' name='issue-id' value='{$issue['issue_id']}'>
+                            if ($issue['returned'] === 0){
+                            echo "<form action='auth/return-books.inc.php' method='POST'>";
+                            echo "<input type='hidden' name='fine' value='{$fine}'>";
+                            echo "<input type='hidden' name='issue-id' value='{$issue['issue_id']}'>
                                     <input type='submit' class='bg-green-500 px-2 py-1 text-white hover:shadow-lg text-s font-thin' name='issue{$issue['issue_id']}' value='Return' />
-                                </form>";
-                            else echo "Returned";
+                                </form>";}
+                            else echo "<p class='text-green-600'>Returned</p>";
                                 ?>
                             </td>
                         </tr>
