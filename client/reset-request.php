@@ -67,7 +67,7 @@ if (isset($_POST["reset-request-submit"])) {
     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
     // $mail->isHTML();
     $mail->Username = 'libme.library.system@gmail.com';
-    $mail->Password = 'khiladinoek123';
+    $mail->Password = '';
     $mail->setFrom('no-reply@libMe.com');
     $mail->Subject = "Reset your password";
     $mail->Body = $message;
